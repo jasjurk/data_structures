@@ -39,22 +39,10 @@ void insert_v(int x, node* wierz)
             wierz->r = new node(sr + 1, wierz->k);
         }
         if(x <= sr)
-        {
             insert_v(x, wierz->l);
-            //wierz->r->v += v;
-        }
         else
-        {
             insert_v(x, wierz->r);
-            //wierz->l->v += v;
-        }
-        //wierz->sum = wierz->l->sum + wierz->r->sum + (wierz->k - wierz->p + 1) * wierz->v;
     }
-    /*else
-    {
-        wierz->v += v;
-        wierz->sum += v;
-    }*/
 }
 
 void rep(int x, node* wierz)
@@ -62,15 +50,9 @@ void rep(int x, node* wierz)
     if(wierz->k - wierz->p > 0)
     {
         if((wierz->p + wierz->k) / 2 >= x)
-        {
             rep(x, wierz->l);
-            //wierz->r->v += v;
-        }
         else
-        {
             rep(x, wierz->r);
-            //wierz->l->v += v;
-        }
         wierz->sum = std::max(wierz->r->sum, wierz->l->sum) + wierz->v;
     }
 }
@@ -83,7 +65,6 @@ void insert(int l, int p, int v)
     node* b = root;
     while(a->k - a->p > 0)
     {
-        printf("%d %d %d %d\n", a->p, a->k, b->p, b->k);
         if(a != b)
         {
             if((a->k + a->p) / 2 >= l)
@@ -132,7 +113,7 @@ void dfs_print(node* wierz)
         dfs_print(wierz->l);
         dfs_print(wierz->r);
     }
-    printf("%d %d %d| ", wierz->p, wierz->k, wierz->v);
+    printf("%d %d| ", wierz->p, wierz->k);
 }
 
 int main()
